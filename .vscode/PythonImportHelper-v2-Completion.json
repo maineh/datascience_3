@@ -1,0 +1,919 @@
+[
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "RandomForestRegressor",
+        "importPath": "sklearn.ensemble",
+        "description": "sklearn.ensemble",
+        "isExtraImport": true,
+        "detail": "sklearn.ensemble",
+        "documentation": {}
+    },
+    {
+        "label": "BaggingRegressor",
+        "importPath": "sklearn.ensemble",
+        "description": "sklearn.ensemble",
+        "isExtraImport": true,
+        "detail": "sklearn.ensemble",
+        "documentation": {}
+    },
+    {
+        "label": "RandomForestRegressor",
+        "importPath": "sklearn.ensemble",
+        "description": "sklearn.ensemble",
+        "isExtraImport": true,
+        "detail": "sklearn.ensemble",
+        "documentation": {}
+    },
+    {
+        "label": "RandomForestRegressor",
+        "importPath": "sklearn.ensemble",
+        "description": "sklearn.ensemble",
+        "isExtraImport": true,
+        "detail": "sklearn.ensemble",
+        "documentation": {}
+    },
+    {
+        "label": "BaggingRegressor",
+        "importPath": "sklearn.ensemble",
+        "description": "sklearn.ensemble",
+        "isExtraImport": true,
+        "detail": "sklearn.ensemble",
+        "documentation": {}
+    },
+    {
+        "label": "train_test_split",
+        "importPath": "sklearn.model_selection",
+        "description": "sklearn.model_selection",
+        "isExtraImport": true,
+        "detail": "sklearn.model_selection",
+        "documentation": {}
+    },
+    {
+        "label": "train_test_split",
+        "importPath": "sklearn.model_selection",
+        "description": "sklearn.model_selection",
+        "isExtraImport": true,
+        "detail": "sklearn.model_selection",
+        "documentation": {}
+    },
+    {
+        "label": "mean_squared_error",
+        "importPath": "sklearn.metrics",
+        "description": "sklearn.metrics",
+        "isExtraImport": true,
+        "detail": "sklearn.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "mean_squared_error",
+        "importPath": "sklearn.metrics",
+        "description": "sklearn.metrics",
+        "isExtraImport": true,
+        "detail": "sklearn.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "Stemmer",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "Stemmer",
+        "description": "Stemmer",
+        "detail": "Stemmer",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "SnowballStemmer",
+        "importPath": "nltk.stem.snowball",
+        "description": "nltk.stem.snowball",
+        "isExtraImport": true,
+        "detail": "nltk.stem.snowball",
+        "documentation": {}
+    },
+    {
+        "label": "str_stemmer",
+        "kind": 2,
+        "importPath": "Week_7",
+        "description": "Week_7",
+        "peekOfCode": "def str_stemmer(s):\n    return \" \".join([stemmer.stemWord(word) for word in s.lower().split()])\ndef str_common_word(str1, str2):\n    return sum(int(str2.find(word)>=0) for word in str1.split())\ndf_all = pd.concat((df_train, df_test), axis=0, ignore_index=True)\ndf_all = pd.merge(df_all, df_pro_desc, how='left', on='product_uid')\ndf_all['search_term'] = df_all['search_term'].map(lambda x:str_stemmer(x))\ndf_all['product_title'] = df_all['product_title'].map(lambda x:str_stemmer(x))\ndf_all['product_description'] = df_all['product_description'].map(lambda x:str_stemmer(x))\ndf_all['len_of_query'] = df_all['search_term'].map(lambda x:len(x.split())).astype(np.int64)",
+        "detail": "Week_7",
+        "documentation": {}
+    },
+    {
+        "label": "str_common_word",
+        "kind": 2,
+        "importPath": "Week_7",
+        "description": "Week_7",
+        "peekOfCode": "def str_common_word(str1, str2):\n    return sum(int(str2.find(word)>=0) for word in str1.split())\ndf_all = pd.concat((df_train, df_test), axis=0, ignore_index=True)\ndf_all = pd.merge(df_all, df_pro_desc, how='left', on='product_uid')\ndf_all['search_term'] = df_all['search_term'].map(lambda x:str_stemmer(x))\ndf_all['product_title'] = df_all['product_title'].map(lambda x:str_stemmer(x))\ndf_all['product_description'] = df_all['product_description'].map(lambda x:str_stemmer(x))\ndf_all['len_of_query'] = df_all['search_term'].map(lambda x:len(x.split())).astype(np.int64)\ndf_all['product_info'] = df_all['search_term']+\"\\t\"+df_all['product_title']+\"\\t\"+df_all['product_description']\ndf_all['word_in_title'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[1]))",
+        "detail": "Week_7",
+        "documentation": {}
+    },
+    {
+        "label": "start_time",
+        "kind": 5,
+        "importPath": "Week_7",
+        "description": "Week_7",
+        "peekOfCode": "start_time = time.time()\nstemmer = Stemmer.Stemmer('english')\ndf_train = pd.read_csv('input/train.csv', encoding=\"ISO-8859-1\")\ndf_test = pd.read_csv('input/test.csv', encoding=\"ISO-8859-1\")\n# df_attr = pd.read_csv('input/attributes.csv')\ndf_pro_desc = pd.read_csv('input/product_descriptions.csv')\nnum_train = df_train.shape[0]\ndef str_stemmer(s):\n    return \" \".join([stemmer.stemWord(word) for word in s.lower().split()])\ndef str_common_word(str1, str2):",
+        "detail": "Week_7",
+        "documentation": {}
+    },
+    {
+        "label": "stemmer",
+        "kind": 5,
+        "importPath": "Week_7",
+        "description": "Week_7",
+        "peekOfCode": "stemmer = Stemmer.Stemmer('english')\ndf_train = pd.read_csv('input/train.csv', encoding=\"ISO-8859-1\")\ndf_test = pd.read_csv('input/test.csv', encoding=\"ISO-8859-1\")\n# df_attr = pd.read_csv('input/attributes.csv')\ndf_pro_desc = pd.read_csv('input/product_descriptions.csv')\nnum_train = df_train.shape[0]\ndef str_stemmer(s):\n    return \" \".join([stemmer.stemWord(word) for word in s.lower().split()])\ndef str_common_word(str1, str2):\n    return sum(int(str2.find(word)>=0) for word in str1.split())",
+        "detail": "Week_7",
+        "documentation": {}
+    },
+    {
+        "label": "df_train",
+        "kind": 5,
+        "importPath": "Week_7",
+        "description": "Week_7",
+        "peekOfCode": "df_train = pd.read_csv('input/train.csv', encoding=\"ISO-8859-1\")\ndf_test = pd.read_csv('input/test.csv', encoding=\"ISO-8859-1\")\n# df_attr = pd.read_csv('input/attributes.csv')\ndf_pro_desc = pd.read_csv('input/product_descriptions.csv')\nnum_train = df_train.shape[0]\ndef str_stemmer(s):\n    return \" \".join([stemmer.stemWord(word) for word in s.lower().split()])\ndef str_common_word(str1, str2):\n    return sum(int(str2.find(word)>=0) for word in str1.split())\ndf_all = pd.concat((df_train, df_test), axis=0, ignore_index=True)",
+        "detail": "Week_7",
+        "documentation": {}
+    },
+    {
+        "label": "df_test",
+        "kind": 5,
+        "importPath": "Week_7",
+        "description": "Week_7",
+        "peekOfCode": "df_test = pd.read_csv('input/test.csv', encoding=\"ISO-8859-1\")\n# df_attr = pd.read_csv('input/attributes.csv')\ndf_pro_desc = pd.read_csv('input/product_descriptions.csv')\nnum_train = df_train.shape[0]\ndef str_stemmer(s):\n    return \" \".join([stemmer.stemWord(word) for word in s.lower().split()])\ndef str_common_word(str1, str2):\n    return sum(int(str2.find(word)>=0) for word in str1.split())\ndf_all = pd.concat((df_train, df_test), axis=0, ignore_index=True)\ndf_all = pd.merge(df_all, df_pro_desc, how='left', on='product_uid')",
+        "detail": "Week_7",
+        "documentation": {}
+    },
+    {
+        "label": "df_pro_desc",
+        "kind": 5,
+        "importPath": "Week_7",
+        "description": "Week_7",
+        "peekOfCode": "df_pro_desc = pd.read_csv('input/product_descriptions.csv')\nnum_train = df_train.shape[0]\ndef str_stemmer(s):\n    return \" \".join([stemmer.stemWord(word) for word in s.lower().split()])\ndef str_common_word(str1, str2):\n    return sum(int(str2.find(word)>=0) for word in str1.split())\ndf_all = pd.concat((df_train, df_test), axis=0, ignore_index=True)\ndf_all = pd.merge(df_all, df_pro_desc, how='left', on='product_uid')\ndf_all['search_term'] = df_all['search_term'].map(lambda x:str_stemmer(x))\ndf_all['product_title'] = df_all['product_title'].map(lambda x:str_stemmer(x))",
+        "detail": "Week_7",
+        "documentation": {}
+    },
+    {
+        "label": "num_train",
+        "kind": 5,
+        "importPath": "Week_7",
+        "description": "Week_7",
+        "peekOfCode": "num_train = df_train.shape[0]\ndef str_stemmer(s):\n    return \" \".join([stemmer.stemWord(word) for word in s.lower().split()])\ndef str_common_word(str1, str2):\n    return sum(int(str2.find(word)>=0) for word in str1.split())\ndf_all = pd.concat((df_train, df_test), axis=0, ignore_index=True)\ndf_all = pd.merge(df_all, df_pro_desc, how='left', on='product_uid')\ndf_all['search_term'] = df_all['search_term'].map(lambda x:str_stemmer(x))\ndf_all['product_title'] = df_all['product_title'].map(lambda x:str_stemmer(x))\ndf_all['product_description'] = df_all['product_description'].map(lambda x:str_stemmer(x))",
+        "detail": "Week_7",
+        "documentation": {}
+    },
+    {
+        "label": "df_all",
+        "kind": 5,
+        "importPath": "Week_7",
+        "description": "Week_7",
+        "peekOfCode": "df_all = pd.concat((df_train, df_test), axis=0, ignore_index=True)\ndf_all = pd.merge(df_all, df_pro_desc, how='left', on='product_uid')\ndf_all['search_term'] = df_all['search_term'].map(lambda x:str_stemmer(x))\ndf_all['product_title'] = df_all['product_title'].map(lambda x:str_stemmer(x))\ndf_all['product_description'] = df_all['product_description'].map(lambda x:str_stemmer(x))\ndf_all['len_of_query'] = df_all['search_term'].map(lambda x:len(x.split())).astype(np.int64)\ndf_all['product_info'] = df_all['search_term']+\"\\t\"+df_all['product_title']+\"\\t\"+df_all['product_description']\ndf_all['word_in_title'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[1]))\ndf_all['word_in_description'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[2]))\ndf_all = df_all.drop(['search_term','product_title','product_description','product_info'],axis=1)",
+        "detail": "Week_7",
+        "documentation": {}
+    },
+    {
+        "label": "df_all",
+        "kind": 5,
+        "importPath": "Week_7",
+        "description": "Week_7",
+        "peekOfCode": "df_all = pd.merge(df_all, df_pro_desc, how='left', on='product_uid')\ndf_all['search_term'] = df_all['search_term'].map(lambda x:str_stemmer(x))\ndf_all['product_title'] = df_all['product_title'].map(lambda x:str_stemmer(x))\ndf_all['product_description'] = df_all['product_description'].map(lambda x:str_stemmer(x))\ndf_all['len_of_query'] = df_all['search_term'].map(lambda x:len(x.split())).astype(np.int64)\ndf_all['product_info'] = df_all['search_term']+\"\\t\"+df_all['product_title']+\"\\t\"+df_all['product_description']\ndf_all['word_in_title'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[1]))\ndf_all['word_in_description'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[2]))\ndf_all = df_all.drop(['search_term','product_title','product_description','product_info'],axis=1)\ndf_train = df_all.iloc[:num_train]",
+        "detail": "Week_7",
+        "documentation": {}
+    },
+    {
+        "label": "df_all['search_term']",
+        "kind": 5,
+        "importPath": "Week_7",
+        "description": "Week_7",
+        "peekOfCode": "df_all['search_term'] = df_all['search_term'].map(lambda x:str_stemmer(x))\ndf_all['product_title'] = df_all['product_title'].map(lambda x:str_stemmer(x))\ndf_all['product_description'] = df_all['product_description'].map(lambda x:str_stemmer(x))\ndf_all['len_of_query'] = df_all['search_term'].map(lambda x:len(x.split())).astype(np.int64)\ndf_all['product_info'] = df_all['search_term']+\"\\t\"+df_all['product_title']+\"\\t\"+df_all['product_description']\ndf_all['word_in_title'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[1]))\ndf_all['word_in_description'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[2]))\ndf_all = df_all.drop(['search_term','product_title','product_description','product_info'],axis=1)\ndf_train = df_all.iloc[:num_train]\ndf_test = df_all.iloc[num_train:]",
+        "detail": "Week_7",
+        "documentation": {}
+    },
+    {
+        "label": "df_all['product_title']",
+        "kind": 5,
+        "importPath": "Week_7",
+        "description": "Week_7",
+        "peekOfCode": "df_all['product_title'] = df_all['product_title'].map(lambda x:str_stemmer(x))\ndf_all['product_description'] = df_all['product_description'].map(lambda x:str_stemmer(x))\ndf_all['len_of_query'] = df_all['search_term'].map(lambda x:len(x.split())).astype(np.int64)\ndf_all['product_info'] = df_all['search_term']+\"\\t\"+df_all['product_title']+\"\\t\"+df_all['product_description']\ndf_all['word_in_title'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[1]))\ndf_all['word_in_description'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[2]))\ndf_all = df_all.drop(['search_term','product_title','product_description','product_info'],axis=1)\ndf_train = df_all.iloc[:num_train]\ndf_test = df_all.iloc[num_train:]\nid_test = df_test['id']",
+        "detail": "Week_7",
+        "documentation": {}
+    },
+    {
+        "label": "df_all['product_description']",
+        "kind": 5,
+        "importPath": "Week_7",
+        "description": "Week_7",
+        "peekOfCode": "df_all['product_description'] = df_all['product_description'].map(lambda x:str_stemmer(x))\ndf_all['len_of_query'] = df_all['search_term'].map(lambda x:len(x.split())).astype(np.int64)\ndf_all['product_info'] = df_all['search_term']+\"\\t\"+df_all['product_title']+\"\\t\"+df_all['product_description']\ndf_all['word_in_title'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[1]))\ndf_all['word_in_description'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[2]))\ndf_all = df_all.drop(['search_term','product_title','product_description','product_info'],axis=1)\ndf_train = df_all.iloc[:num_train]\ndf_test = df_all.iloc[num_train:]\nid_test = df_test['id']\ny_train = df_train['relevance'].values",
+        "detail": "Week_7",
+        "documentation": {}
+    },
+    {
+        "label": "df_all['len_of_query']",
+        "kind": 5,
+        "importPath": "Week_7",
+        "description": "Week_7",
+        "peekOfCode": "df_all['len_of_query'] = df_all['search_term'].map(lambda x:len(x.split())).astype(np.int64)\ndf_all['product_info'] = df_all['search_term']+\"\\t\"+df_all['product_title']+\"\\t\"+df_all['product_description']\ndf_all['word_in_title'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[1]))\ndf_all['word_in_description'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[2]))\ndf_all = df_all.drop(['search_term','product_title','product_description','product_info'],axis=1)\ndf_train = df_all.iloc[:num_train]\ndf_test = df_all.iloc[num_train:]\nid_test = df_test['id']\ny_train = df_train['relevance'].values\nX_train = df_train.drop(['id','relevance'],axis=1).values",
+        "detail": "Week_7",
+        "documentation": {}
+    },
+    {
+        "label": "df_all['product_info']",
+        "kind": 5,
+        "importPath": "Week_7",
+        "description": "Week_7",
+        "peekOfCode": "df_all['product_info'] = df_all['search_term']+\"\\t\"+df_all['product_title']+\"\\t\"+df_all['product_description']\ndf_all['word_in_title'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[1]))\ndf_all['word_in_description'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[2]))\ndf_all = df_all.drop(['search_term','product_title','product_description','product_info'],axis=1)\ndf_train = df_all.iloc[:num_train]\ndf_test = df_all.iloc[num_train:]\nid_test = df_test['id']\ny_train = df_train['relevance'].values\nX_train = df_train.drop(['id','relevance'],axis=1).values\n# Split the training data into training and validation sets (80-20 split)",
+        "detail": "Week_7",
+        "documentation": {}
+    },
+    {
+        "label": "df_all['word_in_title']",
+        "kind": 5,
+        "importPath": "Week_7",
+        "description": "Week_7",
+        "peekOfCode": "df_all['word_in_title'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[1]))\ndf_all['word_in_description'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[2]))\ndf_all = df_all.drop(['search_term','product_title','product_description','product_info'],axis=1)\ndf_train = df_all.iloc[:num_train]\ndf_test = df_all.iloc[num_train:]\nid_test = df_test['id']\ny_train = df_train['relevance'].values\nX_train = df_train.drop(['id','relevance'],axis=1).values\n# Split the training data into training and validation sets (80-20 split)\nX_train_split, X_val_split, y_train_split, y_val_split = train_test_split(X_train, y_train, test_size=0.2, random_state=42)",
+        "detail": "Week_7",
+        "documentation": {}
+    },
+    {
+        "label": "df_all['word_in_description']",
+        "kind": 5,
+        "importPath": "Week_7",
+        "description": "Week_7",
+        "peekOfCode": "df_all['word_in_description'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[2]))\ndf_all = df_all.drop(['search_term','product_title','product_description','product_info'],axis=1)\ndf_train = df_all.iloc[:num_train]\ndf_test = df_all.iloc[num_train:]\nid_test = df_test['id']\ny_train = df_train['relevance'].values\nX_train = df_train.drop(['id','relevance'],axis=1).values\n# Split the training data into training and validation sets (80-20 split)\nX_train_split, X_val_split, y_train_split, y_val_split = train_test_split(X_train, y_train, test_size=0.2, random_state=42)\n# Train the model on the new training set and evaluate it on the validation set",
+        "detail": "Week_7",
+        "documentation": {}
+    },
+    {
+        "label": "df_all",
+        "kind": 5,
+        "importPath": "Week_7",
+        "description": "Week_7",
+        "peekOfCode": "df_all = df_all.drop(['search_term','product_title','product_description','product_info'],axis=1)\ndf_train = df_all.iloc[:num_train]\ndf_test = df_all.iloc[num_train:]\nid_test = df_test['id']\ny_train = df_train['relevance'].values\nX_train = df_train.drop(['id','relevance'],axis=1).values\n# Split the training data into training and validation sets (80-20 split)\nX_train_split, X_val_split, y_train_split, y_val_split = train_test_split(X_train, y_train, test_size=0.2, random_state=42)\n# Train the model on the new training set and evaluate it on the validation set\nrf = RandomForestRegressor(n_estimators=15, max_depth=6, random_state=0)",
+        "detail": "Week_7",
+        "documentation": {}
+    },
+    {
+        "label": "df_train",
+        "kind": 5,
+        "importPath": "Week_7",
+        "description": "Week_7",
+        "peekOfCode": "df_train = df_all.iloc[:num_train]\ndf_test = df_all.iloc[num_train:]\nid_test = df_test['id']\ny_train = df_train['relevance'].values\nX_train = df_train.drop(['id','relevance'],axis=1).values\n# Split the training data into training and validation sets (80-20 split)\nX_train_split, X_val_split, y_train_split, y_val_split = train_test_split(X_train, y_train, test_size=0.2, random_state=42)\n# Train the model on the new training set and evaluate it on the validation set\nrf = RandomForestRegressor(n_estimators=15, max_depth=6, random_state=0)\nclf = BaggingRegressor(rf, n_estimators=45, max_samples=0.1, random_state=25)",
+        "detail": "Week_7",
+        "documentation": {}
+    },
+    {
+        "label": "df_test",
+        "kind": 5,
+        "importPath": "Week_7",
+        "description": "Week_7",
+        "peekOfCode": "df_test = df_all.iloc[num_train:]\nid_test = df_test['id']\ny_train = df_train['relevance'].values\nX_train = df_train.drop(['id','relevance'],axis=1).values\n# Split the training data into training and validation sets (80-20 split)\nX_train_split, X_val_split, y_train_split, y_val_split = train_test_split(X_train, y_train, test_size=0.2, random_state=42)\n# Train the model on the new training set and evaluate it on the validation set\nrf = RandomForestRegressor(n_estimators=15, max_depth=6, random_state=0)\nclf = BaggingRegressor(rf, n_estimators=45, max_samples=0.1, random_state=25)\nclf.fit(X_train_split, y_train_split)",
+        "detail": "Week_7",
+        "documentation": {}
+    },
+    {
+        "label": "id_test",
+        "kind": 5,
+        "importPath": "Week_7",
+        "description": "Week_7",
+        "peekOfCode": "id_test = df_test['id']\ny_train = df_train['relevance'].values\nX_train = df_train.drop(['id','relevance'],axis=1).values\n# Split the training data into training and validation sets (80-20 split)\nX_train_split, X_val_split, y_train_split, y_val_split = train_test_split(X_train, y_train, test_size=0.2, random_state=42)\n# Train the model on the new training set and evaluate it on the validation set\nrf = RandomForestRegressor(n_estimators=15, max_depth=6, random_state=0)\nclf = BaggingRegressor(rf, n_estimators=45, max_samples=0.1, random_state=25)\nclf.fit(X_train_split, y_train_split)\n# Predictions on the validation set",
+        "detail": "Week_7",
+        "documentation": {}
+    },
+    {
+        "label": "y_train",
+        "kind": 5,
+        "importPath": "Week_7",
+        "description": "Week_7",
+        "peekOfCode": "y_train = df_train['relevance'].values\nX_train = df_train.drop(['id','relevance'],axis=1).values\n# Split the training data into training and validation sets (80-20 split)\nX_train_split, X_val_split, y_train_split, y_val_split = train_test_split(X_train, y_train, test_size=0.2, random_state=42)\n# Train the model on the new training set and evaluate it on the validation set\nrf = RandomForestRegressor(n_estimators=15, max_depth=6, random_state=0)\nclf = BaggingRegressor(rf, n_estimators=45, max_samples=0.1, random_state=25)\nclf.fit(X_train_split, y_train_split)\n# Predictions on the validation set\ny_val_pred = clf.predict(X_val_split)",
+        "detail": "Week_7",
+        "documentation": {}
+    },
+    {
+        "label": "X_train",
+        "kind": 5,
+        "importPath": "Week_7",
+        "description": "Week_7",
+        "peekOfCode": "X_train = df_train.drop(['id','relevance'],axis=1).values\n# Split the training data into training and validation sets (80-20 split)\nX_train_split, X_val_split, y_train_split, y_val_split = train_test_split(X_train, y_train, test_size=0.2, random_state=42)\n# Train the model on the new training set and evaluate it on the validation set\nrf = RandomForestRegressor(n_estimators=15, max_depth=6, random_state=0)\nclf = BaggingRegressor(rf, n_estimators=45, max_samples=0.1, random_state=25)\nclf.fit(X_train_split, y_train_split)\n# Predictions on the validation set\ny_val_pred = clf.predict(X_val_split)\n# Calculate RMSE",
+        "detail": "Week_7",
+        "documentation": {}
+    },
+    {
+        "label": "rf",
+        "kind": 5,
+        "importPath": "Week_7",
+        "description": "Week_7",
+        "peekOfCode": "rf = RandomForestRegressor(n_estimators=15, max_depth=6, random_state=0)\nclf = BaggingRegressor(rf, n_estimators=45, max_samples=0.1, random_state=25)\nclf.fit(X_train_split, y_train_split)\n# Predictions on the validation set\ny_val_pred = clf.predict(X_val_split)\n# Calculate RMSE\nrmse = np.sqrt(mean_squared_error(y_val_split, y_val_pred))\nprint(\"RMSE on validation set:\", rmse)\nprint(\"Process finished --- %s seconds ---\" % (time.time() - start_time))",
+        "detail": "Week_7",
+        "documentation": {}
+    },
+    {
+        "label": "clf",
+        "kind": 5,
+        "importPath": "Week_7",
+        "description": "Week_7",
+        "peekOfCode": "clf = BaggingRegressor(rf, n_estimators=45, max_samples=0.1, random_state=25)\nclf.fit(X_train_split, y_train_split)\n# Predictions on the validation set\ny_val_pred = clf.predict(X_val_split)\n# Calculate RMSE\nrmse = np.sqrt(mean_squared_error(y_val_split, y_val_pred))\nprint(\"RMSE on validation set:\", rmse)\nprint(\"Process finished --- %s seconds ---\" % (time.time() - start_time))",
+        "detail": "Week_7",
+        "documentation": {}
+    },
+    {
+        "label": "y_val_pred",
+        "kind": 5,
+        "importPath": "Week_7",
+        "description": "Week_7",
+        "peekOfCode": "y_val_pred = clf.predict(X_val_split)\n# Calculate RMSE\nrmse = np.sqrt(mean_squared_error(y_val_split, y_val_pred))\nprint(\"RMSE on validation set:\", rmse)\nprint(\"Process finished --- %s seconds ---\" % (time.time() - start_time))",
+        "detail": "Week_7",
+        "documentation": {}
+    },
+    {
+        "label": "rmse",
+        "kind": 5,
+        "importPath": "Week_7",
+        "description": "Week_7",
+        "peekOfCode": "rmse = np.sqrt(mean_squared_error(y_val_split, y_val_pred))\nprint(\"RMSE on validation set:\", rmse)\nprint(\"Process finished --- %s seconds ---\" % (time.time() - start_time))",
+        "detail": "Week_7",
+        "documentation": {}
+    },
+    {
+        "label": "str_stemmer",
+        "kind": 2,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "def str_stemmer(s):\n    return \" \".join(stemmer.stemWords(s.lower().split()))\ndef str_common_word(str1, str2):\n    return sum(int(str2.find(word)>=0) for word in str1.split())\ndef jaccard_similarity(str1, str2):\n    a = set(str1.split())\n    b = set(str2.split())\n    c = a.intersection(b)\n    return float(len(c)) / (len(a) + len(b) - len(c))\ndf_all = pd.concat((df_train, df_test), axis=0, ignore_index=True)",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "str_common_word",
+        "kind": 2,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "def str_common_word(str1, str2):\n    return sum(int(str2.find(word)>=0) for word in str1.split())\ndef jaccard_similarity(str1, str2):\n    a = set(str1.split())\n    b = set(str2.split())\n    c = a.intersection(b)\n    return float(len(c)) / (len(a) + len(b) - len(c))\ndf_all = pd.concat((df_train, df_test), axis=0, ignore_index=True)\ndf_all = pd.merge(df_all, df_pro_desc, how='left', on='product_uid')\ndf_all = pd.merge(df_all, df_attr, how='left', on='product_uid')",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "jaccard_similarity",
+        "kind": 2,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "def jaccard_similarity(str1, str2):\n    a = set(str1.split())\n    b = set(str2.split())\n    c = a.intersection(b)\n    return float(len(c)) / (len(a) + len(b) - len(c))\ndf_all = pd.concat((df_train, df_test), axis=0, ignore_index=True)\ndf_all = pd.merge(df_all, df_pro_desc, how='left', on='product_uid')\ndf_all = pd.merge(df_all, df_attr, how='left', on='product_uid')\n# Stemming\ndf_all['search_term'] = df_all['search_term'].apply(str_stemmer)",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "start_time",
+        "kind": 5,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "start_time = time.time()\nstemmer = Stemmer.Stemmer('english')\n# Load data\ndf_train = pd.read_csv('input/train.csv', encoding=\"ISO-8859-1\")\ndf_test = pd.read_csv('input/test.csv', encoding=\"ISO-8859-1\")\ndf_attr = pd.read_csv('input/attributes.csv')\ndf_pro_desc = pd.read_csv('input/product_descriptions.csv')\nnum_train = df_train.shape[0]\n# Preprocess and feature extraction\ndef str_stemmer(s):",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "stemmer",
+        "kind": 5,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "stemmer = Stemmer.Stemmer('english')\n# Load data\ndf_train = pd.read_csv('input/train.csv', encoding=\"ISO-8859-1\")\ndf_test = pd.read_csv('input/test.csv', encoding=\"ISO-8859-1\")\ndf_attr = pd.read_csv('input/attributes.csv')\ndf_pro_desc = pd.read_csv('input/product_descriptions.csv')\nnum_train = df_train.shape[0]\n# Preprocess and feature extraction\ndef str_stemmer(s):\n    return \" \".join(stemmer.stemWords(s.lower().split()))",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "df_train",
+        "kind": 5,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "df_train = pd.read_csv('input/train.csv', encoding=\"ISO-8859-1\")\ndf_test = pd.read_csv('input/test.csv', encoding=\"ISO-8859-1\")\ndf_attr = pd.read_csv('input/attributes.csv')\ndf_pro_desc = pd.read_csv('input/product_descriptions.csv')\nnum_train = df_train.shape[0]\n# Preprocess and feature extraction\ndef str_stemmer(s):\n    return \" \".join(stemmer.stemWords(s.lower().split()))\ndef str_common_word(str1, str2):\n    return sum(int(str2.find(word)>=0) for word in str1.split())",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "df_test",
+        "kind": 5,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "df_test = pd.read_csv('input/test.csv', encoding=\"ISO-8859-1\")\ndf_attr = pd.read_csv('input/attributes.csv')\ndf_pro_desc = pd.read_csv('input/product_descriptions.csv')\nnum_train = df_train.shape[0]\n# Preprocess and feature extraction\ndef str_stemmer(s):\n    return \" \".join(stemmer.stemWords(s.lower().split()))\ndef str_common_word(str1, str2):\n    return sum(int(str2.find(word)>=0) for word in str1.split())\ndef jaccard_similarity(str1, str2):",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "df_attr",
+        "kind": 5,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "df_attr = pd.read_csv('input/attributes.csv')\ndf_pro_desc = pd.read_csv('input/product_descriptions.csv')\nnum_train = df_train.shape[0]\n# Preprocess and feature extraction\ndef str_stemmer(s):\n    return \" \".join(stemmer.stemWords(s.lower().split()))\ndef str_common_word(str1, str2):\n    return sum(int(str2.find(word)>=0) for word in str1.split())\ndef jaccard_similarity(str1, str2):\n    a = set(str1.split())",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "df_pro_desc",
+        "kind": 5,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "df_pro_desc = pd.read_csv('input/product_descriptions.csv')\nnum_train = df_train.shape[0]\n# Preprocess and feature extraction\ndef str_stemmer(s):\n    return \" \".join(stemmer.stemWords(s.lower().split()))\ndef str_common_word(str1, str2):\n    return sum(int(str2.find(word)>=0) for word in str1.split())\ndef jaccard_similarity(str1, str2):\n    a = set(str1.split())\n    b = set(str2.split())",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "num_train",
+        "kind": 5,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "num_train = df_train.shape[0]\n# Preprocess and feature extraction\ndef str_stemmer(s):\n    return \" \".join(stemmer.stemWords(s.lower().split()))\ndef str_common_word(str1, str2):\n    return sum(int(str2.find(word)>=0) for word in str1.split())\ndef jaccard_similarity(str1, str2):\n    a = set(str1.split())\n    b = set(str2.split())\n    c = a.intersection(b)",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "df_all",
+        "kind": 5,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "df_all = pd.concat((df_train, df_test), axis=0, ignore_index=True)\ndf_all = pd.merge(df_all, df_pro_desc, how='left', on='product_uid')\ndf_all = pd.merge(df_all, df_attr, how='left', on='product_uid')\n# Stemming\ndf_all['search_term'] = df_all['search_term'].apply(str_stemmer)\ndf_all['product_title'] = df_all['product_title'].apply(str_stemmer)\ndf_all['product_description'] = df_all['product_description'].apply(str_stemmer)\ndf_all['name'] = df_all['name'].fillna('').apply(str_stemmer)\ndf_all['value'] = df_all['value'].fillna('').apply(str_stemmer)\n# Features",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "df_all",
+        "kind": 5,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "df_all = pd.merge(df_all, df_pro_desc, how='left', on='product_uid')\ndf_all = pd.merge(df_all, df_attr, how='left', on='product_uid')\n# Stemming\ndf_all['search_term'] = df_all['search_term'].apply(str_stemmer)\ndf_all['product_title'] = df_all['product_title'].apply(str_stemmer)\ndf_all['product_description'] = df_all['product_description'].apply(str_stemmer)\ndf_all['name'] = df_all['name'].fillna('').apply(str_stemmer)\ndf_all['value'] = df_all['value'].fillna('').apply(str_stemmer)\n# Features\nfeatures = ['len_of_query', 'jaccard_title', 'jaccard_description', 'word_in_title', 'word_in_description', 'word_in_name', 'word_in_value']",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "df_all",
+        "kind": 5,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "df_all = pd.merge(df_all, df_attr, how='left', on='product_uid')\n# Stemming\ndf_all['search_term'] = df_all['search_term'].apply(str_stemmer)\ndf_all['product_title'] = df_all['product_title'].apply(str_stemmer)\ndf_all['product_description'] = df_all['product_description'].apply(str_stemmer)\ndf_all['name'] = df_all['name'].fillna('').apply(str_stemmer)\ndf_all['value'] = df_all['value'].fillna('').apply(str_stemmer)\n# Features\nfeatures = ['len_of_query', 'jaccard_title', 'jaccard_description', 'word_in_title', 'word_in_description', 'word_in_name', 'word_in_value']\ndf_all['len_of_query'] = df_all['search_term'].apply(lambda x: len(x.split()))",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "df_all['search_term']",
+        "kind": 5,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "df_all['search_term'] = df_all['search_term'].apply(str_stemmer)\ndf_all['product_title'] = df_all['product_title'].apply(str_stemmer)\ndf_all['product_description'] = df_all['product_description'].apply(str_stemmer)\ndf_all['name'] = df_all['name'].fillna('').apply(str_stemmer)\ndf_all['value'] = df_all['value'].fillna('').apply(str_stemmer)\n# Features\nfeatures = ['len_of_query', 'jaccard_title', 'jaccard_description', 'word_in_title', 'word_in_description', 'word_in_name', 'word_in_value']\ndf_all['len_of_query'] = df_all['search_term'].apply(lambda x: len(x.split()))\n# Jaccard Similarity\ndf_all['jaccard_title'] = df_all.apply(lambda x: jaccard_similarity(x['search_term'], x['product_title']), axis=1)",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "df_all['product_title']",
+        "kind": 5,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "df_all['product_title'] = df_all['product_title'].apply(str_stemmer)\ndf_all['product_description'] = df_all['product_description'].apply(str_stemmer)\ndf_all['name'] = df_all['name'].fillna('').apply(str_stemmer)\ndf_all['value'] = df_all['value'].fillna('').apply(str_stemmer)\n# Features\nfeatures = ['len_of_query', 'jaccard_title', 'jaccard_description', 'word_in_title', 'word_in_description', 'word_in_name', 'word_in_value']\ndf_all['len_of_query'] = df_all['search_term'].apply(lambda x: len(x.split()))\n# Jaccard Similarity\ndf_all['jaccard_title'] = df_all.apply(lambda x: jaccard_similarity(x['search_term'], x['product_title']), axis=1)\ndf_all['jaccard_description'] = df_all.apply(lambda x: jaccard_similarity(x['search_term'], x['product_description']), axis=1)",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "df_all['product_description']",
+        "kind": 5,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "df_all['product_description'] = df_all['product_description'].apply(str_stemmer)\ndf_all['name'] = df_all['name'].fillna('').apply(str_stemmer)\ndf_all['value'] = df_all['value'].fillna('').apply(str_stemmer)\n# Features\nfeatures = ['len_of_query', 'jaccard_title', 'jaccard_description', 'word_in_title', 'word_in_description', 'word_in_name', 'word_in_value']\ndf_all['len_of_query'] = df_all['search_term'].apply(lambda x: len(x.split()))\n# Jaccard Similarity\ndf_all['jaccard_title'] = df_all.apply(lambda x: jaccard_similarity(x['search_term'], x['product_title']), axis=1)\ndf_all['jaccard_description'] = df_all.apply(lambda x: jaccard_similarity(x['search_term'], x['product_description']), axis=1)\ndf_all['word_in_title'] = df_all.apply(lambda x: str_common_word(x['search_term'], x['product_title']), axis=1)",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "df_all['name']",
+        "kind": 5,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "df_all['name'] = df_all['name'].fillna('').apply(str_stemmer)\ndf_all['value'] = df_all['value'].fillna('').apply(str_stemmer)\n# Features\nfeatures = ['len_of_query', 'jaccard_title', 'jaccard_description', 'word_in_title', 'word_in_description', 'word_in_name', 'word_in_value']\ndf_all['len_of_query'] = df_all['search_term'].apply(lambda x: len(x.split()))\n# Jaccard Similarity\ndf_all['jaccard_title'] = df_all.apply(lambda x: jaccard_similarity(x['search_term'], x['product_title']), axis=1)\ndf_all['jaccard_description'] = df_all.apply(lambda x: jaccard_similarity(x['search_term'], x['product_description']), axis=1)\ndf_all['word_in_title'] = df_all.apply(lambda x: str_common_word(x['search_term'], x['product_title']), axis=1)\ndf_all['word_in_description'] = df_all.apply(lambda x: str_common_word(x['search_term'], x['product_description']), axis=1)",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "df_all['value']",
+        "kind": 5,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "df_all['value'] = df_all['value'].fillna('').apply(str_stemmer)\n# Features\nfeatures = ['len_of_query', 'jaccard_title', 'jaccard_description', 'word_in_title', 'word_in_description', 'word_in_name', 'word_in_value']\ndf_all['len_of_query'] = df_all['search_term'].apply(lambda x: len(x.split()))\n# Jaccard Similarity\ndf_all['jaccard_title'] = df_all.apply(lambda x: jaccard_similarity(x['search_term'], x['product_title']), axis=1)\ndf_all['jaccard_description'] = df_all.apply(lambda x: jaccard_similarity(x['search_term'], x['product_description']), axis=1)\ndf_all['word_in_title'] = df_all.apply(lambda x: str_common_word(x['search_term'], x['product_title']), axis=1)\ndf_all['word_in_description'] = df_all.apply(lambda x: str_common_word(x['search_term'], x['product_description']), axis=1)\ndf_all['word_in_name'] = df_all.apply(lambda x: str_common_word(x['search_term'], x['name']), axis=1)",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "features",
+        "kind": 5,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "features = ['len_of_query', 'jaccard_title', 'jaccard_description', 'word_in_title', 'word_in_description', 'word_in_name', 'word_in_value']\ndf_all['len_of_query'] = df_all['search_term'].apply(lambda x: len(x.split()))\n# Jaccard Similarity\ndf_all['jaccard_title'] = df_all.apply(lambda x: jaccard_similarity(x['search_term'], x['product_title']), axis=1)\ndf_all['jaccard_description'] = df_all.apply(lambda x: jaccard_similarity(x['search_term'], x['product_description']), axis=1)\ndf_all['word_in_title'] = df_all.apply(lambda x: str_common_word(x['search_term'], x['product_title']), axis=1)\ndf_all['word_in_description'] = df_all.apply(lambda x: str_common_word(x['search_term'], x['product_description']), axis=1)\ndf_all['word_in_name'] = df_all.apply(lambda x: str_common_word(x['search_term'], x['name']), axis=1)\ndf_all['word_in_value'] = df_all.apply(lambda x: str_common_word(x['search_term'], x['value']), axis=1)\ndf_all = df_all.drop(['search_term','product_title','product_description', 'name', 'value'],axis=1)",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "df_all['len_of_query']",
+        "kind": 5,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "df_all['len_of_query'] = df_all['search_term'].apply(lambda x: len(x.split()))\n# Jaccard Similarity\ndf_all['jaccard_title'] = df_all.apply(lambda x: jaccard_similarity(x['search_term'], x['product_title']), axis=1)\ndf_all['jaccard_description'] = df_all.apply(lambda x: jaccard_similarity(x['search_term'], x['product_description']), axis=1)\ndf_all['word_in_title'] = df_all.apply(lambda x: str_common_word(x['search_term'], x['product_title']), axis=1)\ndf_all['word_in_description'] = df_all.apply(lambda x: str_common_word(x['search_term'], x['product_description']), axis=1)\ndf_all['word_in_name'] = df_all.apply(lambda x: str_common_word(x['search_term'], x['name']), axis=1)\ndf_all['word_in_value'] = df_all.apply(lambda x: str_common_word(x['search_term'], x['value']), axis=1)\ndf_all = df_all.drop(['search_term','product_title','product_description', 'name', 'value'],axis=1)\ndf_train = df_all.iloc[:num_train]",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "df_all['jaccard_title']",
+        "kind": 5,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "df_all['jaccard_title'] = df_all.apply(lambda x: jaccard_similarity(x['search_term'], x['product_title']), axis=1)\ndf_all['jaccard_description'] = df_all.apply(lambda x: jaccard_similarity(x['search_term'], x['product_description']), axis=1)\ndf_all['word_in_title'] = df_all.apply(lambda x: str_common_word(x['search_term'], x['product_title']), axis=1)\ndf_all['word_in_description'] = df_all.apply(lambda x: str_common_word(x['search_term'], x['product_description']), axis=1)\ndf_all['word_in_name'] = df_all.apply(lambda x: str_common_word(x['search_term'], x['name']), axis=1)\ndf_all['word_in_value'] = df_all.apply(lambda x: str_common_word(x['search_term'], x['value']), axis=1)\ndf_all = df_all.drop(['search_term','product_title','product_description', 'name', 'value'],axis=1)\ndf_train = df_all.iloc[:num_train]\ndf_test = df_all.iloc[num_train:]\ny_train = df_train['relevance'].values",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "df_all['jaccard_description']",
+        "kind": 5,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "df_all['jaccard_description'] = df_all.apply(lambda x: jaccard_similarity(x['search_term'], x['product_description']), axis=1)\ndf_all['word_in_title'] = df_all.apply(lambda x: str_common_word(x['search_term'], x['product_title']), axis=1)\ndf_all['word_in_description'] = df_all.apply(lambda x: str_common_word(x['search_term'], x['product_description']), axis=1)\ndf_all['word_in_name'] = df_all.apply(lambda x: str_common_word(x['search_term'], x['name']), axis=1)\ndf_all['word_in_value'] = df_all.apply(lambda x: str_common_word(x['search_term'], x['value']), axis=1)\ndf_all = df_all.drop(['search_term','product_title','product_description', 'name', 'value'],axis=1)\ndf_train = df_all.iloc[:num_train]\ndf_test = df_all.iloc[num_train:]\ny_train = df_train['relevance'].values\nX_train = df_train.drop(['id','relevance'],axis=1).values",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "df_all['word_in_title']",
+        "kind": 5,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "df_all['word_in_title'] = df_all.apply(lambda x: str_common_word(x['search_term'], x['product_title']), axis=1)\ndf_all['word_in_description'] = df_all.apply(lambda x: str_common_word(x['search_term'], x['product_description']), axis=1)\ndf_all['word_in_name'] = df_all.apply(lambda x: str_common_word(x['search_term'], x['name']), axis=1)\ndf_all['word_in_value'] = df_all.apply(lambda x: str_common_word(x['search_term'], x['value']), axis=1)\ndf_all = df_all.drop(['search_term','product_title','product_description', 'name', 'value'],axis=1)\ndf_train = df_all.iloc[:num_train]\ndf_test = df_all.iloc[num_train:]\ny_train = df_train['relevance'].values\nX_train = df_train.drop(['id','relevance'],axis=1).values\nX_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.2, random_state=42)",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "df_all['word_in_description']",
+        "kind": 5,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "df_all['word_in_description'] = df_all.apply(lambda x: str_common_word(x['search_term'], x['product_description']), axis=1)\ndf_all['word_in_name'] = df_all.apply(lambda x: str_common_word(x['search_term'], x['name']), axis=1)\ndf_all['word_in_value'] = df_all.apply(lambda x: str_common_word(x['search_term'], x['value']), axis=1)\ndf_all = df_all.drop(['search_term','product_title','product_description', 'name', 'value'],axis=1)\ndf_train = df_all.iloc[:num_train]\ndf_test = df_all.iloc[num_train:]\ny_train = df_train['relevance'].values\nX_train = df_train.drop(['id','relevance'],axis=1).values\nX_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.2, random_state=42)\n# Train RandomForestRegressor",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "df_all['word_in_name']",
+        "kind": 5,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "df_all['word_in_name'] = df_all.apply(lambda x: str_common_word(x['search_term'], x['name']), axis=1)\ndf_all['word_in_value'] = df_all.apply(lambda x: str_common_word(x['search_term'], x['value']), axis=1)\ndf_all = df_all.drop(['search_term','product_title','product_description', 'name', 'value'],axis=1)\ndf_train = df_all.iloc[:num_train]\ndf_test = df_all.iloc[num_train:]\ny_train = df_train['relevance'].values\nX_train = df_train.drop(['id','relevance'],axis=1).values\nX_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.2, random_state=42)\n# Train RandomForestRegressor\nrf = RandomForestRegressor(n_estimators=15, max_depth=6, random_state=0)",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "df_all['word_in_value']",
+        "kind": 5,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "df_all['word_in_value'] = df_all.apply(lambda x: str_common_word(x['search_term'], x['value']), axis=1)\ndf_all = df_all.drop(['search_term','product_title','product_description', 'name', 'value'],axis=1)\ndf_train = df_all.iloc[:num_train]\ndf_test = df_all.iloc[num_train:]\ny_train = df_train['relevance'].values\nX_train = df_train.drop(['id','relevance'],axis=1).values\nX_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.2, random_state=42)\n# Train RandomForestRegressor\nrf = RandomForestRegressor(n_estimators=15, max_depth=6, random_state=0)\nrf.fit(X_train, y_train)",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "df_all",
+        "kind": 5,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "df_all = df_all.drop(['search_term','product_title','product_description', 'name', 'value'],axis=1)\ndf_train = df_all.iloc[:num_train]\ndf_test = df_all.iloc[num_train:]\ny_train = df_train['relevance'].values\nX_train = df_train.drop(['id','relevance'],axis=1).values\nX_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.2, random_state=42)\n# Train RandomForestRegressor\nrf = RandomForestRegressor(n_estimators=15, max_depth=6, random_state=0)\nrf.fit(X_train, y_train)\n# Extract feature importances and sort them",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "df_train",
+        "kind": 5,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "df_train = df_all.iloc[:num_train]\ndf_test = df_all.iloc[num_train:]\ny_train = df_train['relevance'].values\nX_train = df_train.drop(['id','relevance'],axis=1).values\nX_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.2, random_state=42)\n# Train RandomForestRegressor\nrf = RandomForestRegressor(n_estimators=15, max_depth=6, random_state=0)\nrf.fit(X_train, y_train)\n# Extract feature importances and sort them\nimportances = rf.feature_importances_",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "df_test",
+        "kind": 5,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "df_test = df_all.iloc[num_train:]\ny_train = df_train['relevance'].values\nX_train = df_train.drop(['id','relevance'],axis=1).values\nX_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.2, random_state=42)\n# Train RandomForestRegressor\nrf = RandomForestRegressor(n_estimators=15, max_depth=6, random_state=0)\nrf.fit(X_train, y_train)\n# Extract feature importances and sort them\nimportances = rf.feature_importances_\nsorted_features = sorted(zip(features, importances), key=lambda x: x[1], reverse=True)",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "y_train",
+        "kind": 5,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "y_train = df_train['relevance'].values\nX_train = df_train.drop(['id','relevance'],axis=1).values\nX_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.2, random_state=42)\n# Train RandomForestRegressor\nrf = RandomForestRegressor(n_estimators=15, max_depth=6, random_state=0)\nrf.fit(X_train, y_train)\n# Extract feature importances and sort them\nimportances = rf.feature_importances_\nsorted_features = sorted(zip(features, importances), key=lambda x: x[1], reverse=True)\n# Output the top 5 important features",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "X_train",
+        "kind": 5,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "X_train = df_train.drop(['id','relevance'],axis=1).values\nX_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.2, random_state=42)\n# Train RandomForestRegressor\nrf = RandomForestRegressor(n_estimators=15, max_depth=6, random_state=0)\nrf.fit(X_train, y_train)\n# Extract feature importances and sort them\nimportances = rf.feature_importances_\nsorted_features = sorted(zip(features, importances), key=lambda x: x[1], reverse=True)\n# Output the top 5 important features\nprint(\"Top 5 most important features:\")",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "rf",
+        "kind": 5,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "rf = RandomForestRegressor(n_estimators=15, max_depth=6, random_state=0)\nrf.fit(X_train, y_train)\n# Extract feature importances and sort them\nimportances = rf.feature_importances_\nsorted_features = sorted(zip(features, importances), key=lambda x: x[1], reverse=True)\n# Output the top 5 important features\nprint(\"Top 5 most important features:\")\nfor feature, importance in sorted_features[:5]:\n    print(f\"{feature}: {importance}\")\n# Prediction and Evaluation",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "importances",
+        "kind": 5,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "importances = rf.feature_importances_\nsorted_features = sorted(zip(features, importances), key=lambda x: x[1], reverse=True)\n# Output the top 5 important features\nprint(\"Top 5 most important features:\")\nfor feature, importance in sorted_features[:5]:\n    print(f\"{feature}: {importance}\")\n# Prediction and Evaluation\ny_val_pred = rf.predict(X_val)\nrmse = np.sqrt(mean_squared_error(y_val, y_val_pred))\nprint(\"RMSE on validation set:\", rmse)",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "sorted_features",
+        "kind": 5,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "sorted_features = sorted(zip(features, importances), key=lambda x: x[1], reverse=True)\n# Output the top 5 important features\nprint(\"Top 5 most important features:\")\nfor feature, importance in sorted_features[:5]:\n    print(f\"{feature}: {importance}\")\n# Prediction and Evaluation\ny_val_pred = rf.predict(X_val)\nrmse = np.sqrt(mean_squared_error(y_val, y_val_pred))\nprint(\"RMSE on validation set:\", rmse)\nprint(\"Process finished --- %s seconds ---\" % (time.time() - start_time))",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "y_val_pred",
+        "kind": 5,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "y_val_pred = rf.predict(X_val)\nrmse = np.sqrt(mean_squared_error(y_val, y_val_pred))\nprint(\"RMSE on validation set:\", rmse)\nprint(\"Process finished --- %s seconds ---\" % (time.time() - start_time))",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "rmse",
+        "kind": 5,
+        "importPath": "Week_9",
+        "description": "Week_9",
+        "peekOfCode": "rmse = np.sqrt(mean_squared_error(y_val, y_val_pred))\nprint(\"RMSE on validation set:\", rmse)\nprint(\"Process finished --- %s seconds ---\" % (time.time() - start_time))",
+        "detail": "Week_9",
+        "documentation": {}
+    },
+    {
+        "label": "str_stemmer",
+        "kind": 2,
+        "importPath": "Yao_Jen_Chang",
+        "description": "Yao_Jen_Chang",
+        "peekOfCode": "def str_stemmer(s):\n\treturn \" \".join([stemmer.stem(word) for word in s.lower().split()])\ndef str_common_word(str1, str2):\n\treturn sum(int(str2.find(word)>=0) for word in str1.split())\ndf_all = pd.concat((df_train, df_test), axis=0, ignore_index=True)\ndf_all = pd.merge(df_all, df_pro_desc, how='left', on='product_uid')\ndf_all['search_term'] = df_all['search_term'].map(lambda x:str_stemmer(x))\ndf_all['product_title'] = df_all['product_title'].map(lambda x:str_stemmer(x))\ndf_all['product_description'] = df_all['product_description'].map(lambda x:str_stemmer(x))\ndf_all['len_of_query'] = df_all['search_term'].map(lambda x:len(x.split())).astype(np.int64)",
+        "detail": "Yao_Jen_Chang",
+        "documentation": {}
+    },
+    {
+        "label": "str_common_word",
+        "kind": 2,
+        "importPath": "Yao_Jen_Chang",
+        "description": "Yao_Jen_Chang",
+        "peekOfCode": "def str_common_word(str1, str2):\n\treturn sum(int(str2.find(word)>=0) for word in str1.split())\ndf_all = pd.concat((df_train, df_test), axis=0, ignore_index=True)\ndf_all = pd.merge(df_all, df_pro_desc, how='left', on='product_uid')\ndf_all['search_term'] = df_all['search_term'].map(lambda x:str_stemmer(x))\ndf_all['product_title'] = df_all['product_title'].map(lambda x:str_stemmer(x))\ndf_all['product_description'] = df_all['product_description'].map(lambda x:str_stemmer(x))\ndf_all['len_of_query'] = df_all['search_term'].map(lambda x:len(x.split())).astype(np.int64)\ndf_all['product_info'] = df_all['search_term']+\"\\t\"+df_all['product_title']+\"\\t\"+df_all['product_description']\ndf_all['word_in_title'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[1]))",
+        "detail": "Yao_Jen_Chang",
+        "documentation": {}
+    },
+    {
+        "label": "stemmer",
+        "kind": 5,
+        "importPath": "Yao_Jen_Chang",
+        "description": "Yao_Jen_Chang",
+        "peekOfCode": "stemmer = SnowballStemmer('english')\ndf_train = pd.read_csv('input/train.csv', encoding=\"ISO-8859-1\")\ndf_test = pd.read_csv('input/test.csv', encoding=\"ISO-8859-1\")\n# df_attr = pd.read_csv('input/attributes.csv')\ndf_pro_desc = pd.read_csv('input/product_descriptions.csv')\nnum_train = df_train.shape[0]\ndef str_stemmer(s):\n\treturn \" \".join([stemmer.stem(word) for word in s.lower().split()])\ndef str_common_word(str1, str2):\n\treturn sum(int(str2.find(word)>=0) for word in str1.split())",
+        "detail": "Yao_Jen_Chang",
+        "documentation": {}
+    },
+    {
+        "label": "df_train",
+        "kind": 5,
+        "importPath": "Yao_Jen_Chang",
+        "description": "Yao_Jen_Chang",
+        "peekOfCode": "df_train = pd.read_csv('input/train.csv', encoding=\"ISO-8859-1\")\ndf_test = pd.read_csv('input/test.csv', encoding=\"ISO-8859-1\")\n# df_attr = pd.read_csv('input/attributes.csv')\ndf_pro_desc = pd.read_csv('input/product_descriptions.csv')\nnum_train = df_train.shape[0]\ndef str_stemmer(s):\n\treturn \" \".join([stemmer.stem(word) for word in s.lower().split()])\ndef str_common_word(str1, str2):\n\treturn sum(int(str2.find(word)>=0) for word in str1.split())\ndf_all = pd.concat((df_train, df_test), axis=0, ignore_index=True)",
+        "detail": "Yao_Jen_Chang",
+        "documentation": {}
+    },
+    {
+        "label": "df_test",
+        "kind": 5,
+        "importPath": "Yao_Jen_Chang",
+        "description": "Yao_Jen_Chang",
+        "peekOfCode": "df_test = pd.read_csv('input/test.csv', encoding=\"ISO-8859-1\")\n# df_attr = pd.read_csv('input/attributes.csv')\ndf_pro_desc = pd.read_csv('input/product_descriptions.csv')\nnum_train = df_train.shape[0]\ndef str_stemmer(s):\n\treturn \" \".join([stemmer.stem(word) for word in s.lower().split()])\ndef str_common_word(str1, str2):\n\treturn sum(int(str2.find(word)>=0) for word in str1.split())\ndf_all = pd.concat((df_train, df_test), axis=0, ignore_index=True)\ndf_all = pd.merge(df_all, df_pro_desc, how='left', on='product_uid')",
+        "detail": "Yao_Jen_Chang",
+        "documentation": {}
+    },
+    {
+        "label": "df_pro_desc",
+        "kind": 5,
+        "importPath": "Yao_Jen_Chang",
+        "description": "Yao_Jen_Chang",
+        "peekOfCode": "df_pro_desc = pd.read_csv('input/product_descriptions.csv')\nnum_train = df_train.shape[0]\ndef str_stemmer(s):\n\treturn \" \".join([stemmer.stem(word) for word in s.lower().split()])\ndef str_common_word(str1, str2):\n\treturn sum(int(str2.find(word)>=0) for word in str1.split())\ndf_all = pd.concat((df_train, df_test), axis=0, ignore_index=True)\ndf_all = pd.merge(df_all, df_pro_desc, how='left', on='product_uid')\ndf_all['search_term'] = df_all['search_term'].map(lambda x:str_stemmer(x))\ndf_all['product_title'] = df_all['product_title'].map(lambda x:str_stemmer(x))",
+        "detail": "Yao_Jen_Chang",
+        "documentation": {}
+    },
+    {
+        "label": "num_train",
+        "kind": 5,
+        "importPath": "Yao_Jen_Chang",
+        "description": "Yao_Jen_Chang",
+        "peekOfCode": "num_train = df_train.shape[0]\ndef str_stemmer(s):\n\treturn \" \".join([stemmer.stem(word) for word in s.lower().split()])\ndef str_common_word(str1, str2):\n\treturn sum(int(str2.find(word)>=0) for word in str1.split())\ndf_all = pd.concat((df_train, df_test), axis=0, ignore_index=True)\ndf_all = pd.merge(df_all, df_pro_desc, how='left', on='product_uid')\ndf_all['search_term'] = df_all['search_term'].map(lambda x:str_stemmer(x))\ndf_all['product_title'] = df_all['product_title'].map(lambda x:str_stemmer(x))\ndf_all['product_description'] = df_all['product_description'].map(lambda x:str_stemmer(x))",
+        "detail": "Yao_Jen_Chang",
+        "documentation": {}
+    },
+    {
+        "label": "df_all",
+        "kind": 5,
+        "importPath": "Yao_Jen_Chang",
+        "description": "Yao_Jen_Chang",
+        "peekOfCode": "df_all = pd.concat((df_train, df_test), axis=0, ignore_index=True)\ndf_all = pd.merge(df_all, df_pro_desc, how='left', on='product_uid')\ndf_all['search_term'] = df_all['search_term'].map(lambda x:str_stemmer(x))\ndf_all['product_title'] = df_all['product_title'].map(lambda x:str_stemmer(x))\ndf_all['product_description'] = df_all['product_description'].map(lambda x:str_stemmer(x))\ndf_all['len_of_query'] = df_all['search_term'].map(lambda x:len(x.split())).astype(np.int64)\ndf_all['product_info'] = df_all['search_term']+\"\\t\"+df_all['product_title']+\"\\t\"+df_all['product_description']\ndf_all['word_in_title'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[1]))\ndf_all['word_in_description'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[2]))\ndf_all = df_all.drop(['search_term','product_title','product_description','product_info'],axis=1)",
+        "detail": "Yao_Jen_Chang",
+        "documentation": {}
+    },
+    {
+        "label": "df_all",
+        "kind": 5,
+        "importPath": "Yao_Jen_Chang",
+        "description": "Yao_Jen_Chang",
+        "peekOfCode": "df_all = pd.merge(df_all, df_pro_desc, how='left', on='product_uid')\ndf_all['search_term'] = df_all['search_term'].map(lambda x:str_stemmer(x))\ndf_all['product_title'] = df_all['product_title'].map(lambda x:str_stemmer(x))\ndf_all['product_description'] = df_all['product_description'].map(lambda x:str_stemmer(x))\ndf_all['len_of_query'] = df_all['search_term'].map(lambda x:len(x.split())).astype(np.int64)\ndf_all['product_info'] = df_all['search_term']+\"\\t\"+df_all['product_title']+\"\\t\"+df_all['product_description']\ndf_all['word_in_title'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[1]))\ndf_all['word_in_description'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[2]))\ndf_all = df_all.drop(['search_term','product_title','product_description','product_info'],axis=1)\ndf_train = df_all.iloc[:num_train]",
+        "detail": "Yao_Jen_Chang",
+        "documentation": {}
+    },
+    {
+        "label": "df_all['search_term']",
+        "kind": 5,
+        "importPath": "Yao_Jen_Chang",
+        "description": "Yao_Jen_Chang",
+        "peekOfCode": "df_all['search_term'] = df_all['search_term'].map(lambda x:str_stemmer(x))\ndf_all['product_title'] = df_all['product_title'].map(lambda x:str_stemmer(x))\ndf_all['product_description'] = df_all['product_description'].map(lambda x:str_stemmer(x))\ndf_all['len_of_query'] = df_all['search_term'].map(lambda x:len(x.split())).astype(np.int64)\ndf_all['product_info'] = df_all['search_term']+\"\\t\"+df_all['product_title']+\"\\t\"+df_all['product_description']\ndf_all['word_in_title'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[1]))\ndf_all['word_in_description'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[2]))\ndf_all = df_all.drop(['search_term','product_title','product_description','product_info'],axis=1)\ndf_train = df_all.iloc[:num_train]\ndf_test = df_all.iloc[num_train:]",
+        "detail": "Yao_Jen_Chang",
+        "documentation": {}
+    },
+    {
+        "label": "df_all['product_title']",
+        "kind": 5,
+        "importPath": "Yao_Jen_Chang",
+        "description": "Yao_Jen_Chang",
+        "peekOfCode": "df_all['product_title'] = df_all['product_title'].map(lambda x:str_stemmer(x))\ndf_all['product_description'] = df_all['product_description'].map(lambda x:str_stemmer(x))\ndf_all['len_of_query'] = df_all['search_term'].map(lambda x:len(x.split())).astype(np.int64)\ndf_all['product_info'] = df_all['search_term']+\"\\t\"+df_all['product_title']+\"\\t\"+df_all['product_description']\ndf_all['word_in_title'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[1]))\ndf_all['word_in_description'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[2]))\ndf_all = df_all.drop(['search_term','product_title','product_description','product_info'],axis=1)\ndf_train = df_all.iloc[:num_train]\ndf_test = df_all.iloc[num_train:]\nid_test = df_test['id']",
+        "detail": "Yao_Jen_Chang",
+        "documentation": {}
+    },
+    {
+        "label": "df_all['product_description']",
+        "kind": 5,
+        "importPath": "Yao_Jen_Chang",
+        "description": "Yao_Jen_Chang",
+        "peekOfCode": "df_all['product_description'] = df_all['product_description'].map(lambda x:str_stemmer(x))\ndf_all['len_of_query'] = df_all['search_term'].map(lambda x:len(x.split())).astype(np.int64)\ndf_all['product_info'] = df_all['search_term']+\"\\t\"+df_all['product_title']+\"\\t\"+df_all['product_description']\ndf_all['word_in_title'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[1]))\ndf_all['word_in_description'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[2]))\ndf_all = df_all.drop(['search_term','product_title','product_description','product_info'],axis=1)\ndf_train = df_all.iloc[:num_train]\ndf_test = df_all.iloc[num_train:]\nid_test = df_test['id']\ny_train = df_train['relevance'].values",
+        "detail": "Yao_Jen_Chang",
+        "documentation": {}
+    },
+    {
+        "label": "df_all['len_of_query']",
+        "kind": 5,
+        "importPath": "Yao_Jen_Chang",
+        "description": "Yao_Jen_Chang",
+        "peekOfCode": "df_all['len_of_query'] = df_all['search_term'].map(lambda x:len(x.split())).astype(np.int64)\ndf_all['product_info'] = df_all['search_term']+\"\\t\"+df_all['product_title']+\"\\t\"+df_all['product_description']\ndf_all['word_in_title'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[1]))\ndf_all['word_in_description'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[2]))\ndf_all = df_all.drop(['search_term','product_title','product_description','product_info'],axis=1)\ndf_train = df_all.iloc[:num_train]\ndf_test = df_all.iloc[num_train:]\nid_test = df_test['id']\ny_train = df_train['relevance'].values\nX_train = df_train.drop(['id','relevance'],axis=1).values",
+        "detail": "Yao_Jen_Chang",
+        "documentation": {}
+    },
+    {
+        "label": "df_all['product_info']",
+        "kind": 5,
+        "importPath": "Yao_Jen_Chang",
+        "description": "Yao_Jen_Chang",
+        "peekOfCode": "df_all['product_info'] = df_all['search_term']+\"\\t\"+df_all['product_title']+\"\\t\"+df_all['product_description']\ndf_all['word_in_title'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[1]))\ndf_all['word_in_description'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[2]))\ndf_all = df_all.drop(['search_term','product_title','product_description','product_info'],axis=1)\ndf_train = df_all.iloc[:num_train]\ndf_test = df_all.iloc[num_train:]\nid_test = df_test['id']\ny_train = df_train['relevance'].values\nX_train = df_train.drop(['id','relevance'],axis=1).values\nX_test = df_test.drop(['id','relevance'],axis=1).values",
+        "detail": "Yao_Jen_Chang",
+        "documentation": {}
+    },
+    {
+        "label": "df_all['word_in_title']",
+        "kind": 5,
+        "importPath": "Yao_Jen_Chang",
+        "description": "Yao_Jen_Chang",
+        "peekOfCode": "df_all['word_in_title'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[1]))\ndf_all['word_in_description'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[2]))\ndf_all = df_all.drop(['search_term','product_title','product_description','product_info'],axis=1)\ndf_train = df_all.iloc[:num_train]\ndf_test = df_all.iloc[num_train:]\nid_test = df_test['id']\ny_train = df_train['relevance'].values\nX_train = df_train.drop(['id','relevance'],axis=1).values\nX_test = df_test.drop(['id','relevance'],axis=1).values\nrf = RandomForestRegressor(n_estimators=15, max_depth=6, random_state=0)",
+        "detail": "Yao_Jen_Chang",
+        "documentation": {}
+    },
+    {
+        "label": "df_all['word_in_description']",
+        "kind": 5,
+        "importPath": "Yao_Jen_Chang",
+        "description": "Yao_Jen_Chang",
+        "peekOfCode": "df_all['word_in_description'] = df_all['product_info'].map(lambda x:str_common_word(x.split('\\t')[0],x.split('\\t')[2]))\ndf_all = df_all.drop(['search_term','product_title','product_description','product_info'],axis=1)\ndf_train = df_all.iloc[:num_train]\ndf_test = df_all.iloc[num_train:]\nid_test = df_test['id']\ny_train = df_train['relevance'].values\nX_train = df_train.drop(['id','relevance'],axis=1).values\nX_test = df_test.drop(['id','relevance'],axis=1).values\nrf = RandomForestRegressor(n_estimators=15, max_depth=6, random_state=0)\nclf = BaggingRegressor(rf, n_estimators=45, max_samples=0.1, random_state=25)",
+        "detail": "Yao_Jen_Chang",
+        "documentation": {}
+    },
+    {
+        "label": "df_all",
+        "kind": 5,
+        "importPath": "Yao_Jen_Chang",
+        "description": "Yao_Jen_Chang",
+        "peekOfCode": "df_all = df_all.drop(['search_term','product_title','product_description','product_info'],axis=1)\ndf_train = df_all.iloc[:num_train]\ndf_test = df_all.iloc[num_train:]\nid_test = df_test['id']\ny_train = df_train['relevance'].values\nX_train = df_train.drop(['id','relevance'],axis=1).values\nX_test = df_test.drop(['id','relevance'],axis=1).values\nrf = RandomForestRegressor(n_estimators=15, max_depth=6, random_state=0)\nclf = BaggingRegressor(rf, n_estimators=45, max_samples=0.1, random_state=25)\nclf.fit(X_train, y_train)",
+        "detail": "Yao_Jen_Chang",
+        "documentation": {}
+    },
+    {
+        "label": "df_train",
+        "kind": 5,
+        "importPath": "Yao_Jen_Chang",
+        "description": "Yao_Jen_Chang",
+        "peekOfCode": "df_train = df_all.iloc[:num_train]\ndf_test = df_all.iloc[num_train:]\nid_test = df_test['id']\ny_train = df_train['relevance'].values\nX_train = df_train.drop(['id','relevance'],axis=1).values\nX_test = df_test.drop(['id','relevance'],axis=1).values\nrf = RandomForestRegressor(n_estimators=15, max_depth=6, random_state=0)\nclf = BaggingRegressor(rf, n_estimators=45, max_samples=0.1, random_state=25)\nclf.fit(X_train, y_train)\ny_pred = clf.predict(X_test)",
+        "detail": "Yao_Jen_Chang",
+        "documentation": {}
+    },
+    {
+        "label": "df_test",
+        "kind": 5,
+        "importPath": "Yao_Jen_Chang",
+        "description": "Yao_Jen_Chang",
+        "peekOfCode": "df_test = df_all.iloc[num_train:]\nid_test = df_test['id']\ny_train = df_train['relevance'].values\nX_train = df_train.drop(['id','relevance'],axis=1).values\nX_test = df_test.drop(['id','relevance'],axis=1).values\nrf = RandomForestRegressor(n_estimators=15, max_depth=6, random_state=0)\nclf = BaggingRegressor(rf, n_estimators=45, max_samples=0.1, random_state=25)\nclf.fit(X_train, y_train)\ny_pred = clf.predict(X_test)\npd.DataFrame({\"id\": id_test, \"relevance\": y_pred}).to_csv('submission.csv',index=False)",
+        "detail": "Yao_Jen_Chang",
+        "documentation": {}
+    },
+    {
+        "label": "id_test",
+        "kind": 5,
+        "importPath": "Yao_Jen_Chang",
+        "description": "Yao_Jen_Chang",
+        "peekOfCode": "id_test = df_test['id']\ny_train = df_train['relevance'].values\nX_train = df_train.drop(['id','relevance'],axis=1).values\nX_test = df_test.drop(['id','relevance'],axis=1).values\nrf = RandomForestRegressor(n_estimators=15, max_depth=6, random_state=0)\nclf = BaggingRegressor(rf, n_estimators=45, max_samples=0.1, random_state=25)\nclf.fit(X_train, y_train)\ny_pred = clf.predict(X_test)\npd.DataFrame({\"id\": id_test, \"relevance\": y_pred}).to_csv('submission.csv',index=False)",
+        "detail": "Yao_Jen_Chang",
+        "documentation": {}
+    },
+    {
+        "label": "y_train",
+        "kind": 5,
+        "importPath": "Yao_Jen_Chang",
+        "description": "Yao_Jen_Chang",
+        "peekOfCode": "y_train = df_train['relevance'].values\nX_train = df_train.drop(['id','relevance'],axis=1).values\nX_test = df_test.drop(['id','relevance'],axis=1).values\nrf = RandomForestRegressor(n_estimators=15, max_depth=6, random_state=0)\nclf = BaggingRegressor(rf, n_estimators=45, max_samples=0.1, random_state=25)\nclf.fit(X_train, y_train)\ny_pred = clf.predict(X_test)\npd.DataFrame({\"id\": id_test, \"relevance\": y_pred}).to_csv('submission.csv',index=False)",
+        "detail": "Yao_Jen_Chang",
+        "documentation": {}
+    },
+    {
+        "label": "X_train",
+        "kind": 5,
+        "importPath": "Yao_Jen_Chang",
+        "description": "Yao_Jen_Chang",
+        "peekOfCode": "X_train = df_train.drop(['id','relevance'],axis=1).values\nX_test = df_test.drop(['id','relevance'],axis=1).values\nrf = RandomForestRegressor(n_estimators=15, max_depth=6, random_state=0)\nclf = BaggingRegressor(rf, n_estimators=45, max_samples=0.1, random_state=25)\nclf.fit(X_train, y_train)\ny_pred = clf.predict(X_test)\npd.DataFrame({\"id\": id_test, \"relevance\": y_pred}).to_csv('submission.csv',index=False)",
+        "detail": "Yao_Jen_Chang",
+        "documentation": {}
+    },
+    {
+        "label": "X_test",
+        "kind": 5,
+        "importPath": "Yao_Jen_Chang",
+        "description": "Yao_Jen_Chang",
+        "peekOfCode": "X_test = df_test.drop(['id','relevance'],axis=1).values\nrf = RandomForestRegressor(n_estimators=15, max_depth=6, random_state=0)\nclf = BaggingRegressor(rf, n_estimators=45, max_samples=0.1, random_state=25)\nclf.fit(X_train, y_train)\ny_pred = clf.predict(X_test)\npd.DataFrame({\"id\": id_test, \"relevance\": y_pred}).to_csv('submission.csv',index=False)",
+        "detail": "Yao_Jen_Chang",
+        "documentation": {}
+    },
+    {
+        "label": "rf",
+        "kind": 5,
+        "importPath": "Yao_Jen_Chang",
+        "description": "Yao_Jen_Chang",
+        "peekOfCode": "rf = RandomForestRegressor(n_estimators=15, max_depth=6, random_state=0)\nclf = BaggingRegressor(rf, n_estimators=45, max_samples=0.1, random_state=25)\nclf.fit(X_train, y_train)\ny_pred = clf.predict(X_test)\npd.DataFrame({\"id\": id_test, \"relevance\": y_pred}).to_csv('submission.csv',index=False)",
+        "detail": "Yao_Jen_Chang",
+        "documentation": {}
+    },
+    {
+        "label": "clf",
+        "kind": 5,
+        "importPath": "Yao_Jen_Chang",
+        "description": "Yao_Jen_Chang",
+        "peekOfCode": "clf = BaggingRegressor(rf, n_estimators=45, max_samples=0.1, random_state=25)\nclf.fit(X_train, y_train)\ny_pred = clf.predict(X_test)\npd.DataFrame({\"id\": id_test, \"relevance\": y_pred}).to_csv('submission.csv',index=False)",
+        "detail": "Yao_Jen_Chang",
+        "documentation": {}
+    },
+    {
+        "label": "y_pred",
+        "kind": 5,
+        "importPath": "Yao_Jen_Chang",
+        "description": "Yao_Jen_Chang",
+        "peekOfCode": "y_pred = clf.predict(X_test)\npd.DataFrame({\"id\": id_test, \"relevance\": y_pred}).to_csv('submission.csv',index=False)",
+        "detail": "Yao_Jen_Chang",
+        "documentation": {}
+    }
+]
